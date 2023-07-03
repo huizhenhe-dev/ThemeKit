@@ -8,6 +8,7 @@
 
 import Foundation
 import QuartzCore
+import AppKit
 
 /**
  Use `ThemeManager` shared instance to perform app-wide theming related operations,

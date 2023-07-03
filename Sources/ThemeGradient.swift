@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 private var _cachedGradients: NSCache<NSNumber, ThemeGradient> = NSCache()
 private var _cachedThemeGradients: NSCache<NSNumber, NSGradient> = NSCache()

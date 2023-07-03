@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 /**
  Theme protocol: the base of all themes.

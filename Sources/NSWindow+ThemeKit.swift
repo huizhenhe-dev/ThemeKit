@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import AppKit
 /**
  `NSWindow` ThemeKit extension.
  */

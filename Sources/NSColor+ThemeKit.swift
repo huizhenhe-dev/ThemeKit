@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 /**
  `NSColor` ThemeKit extension to help on when overriding colors in `ThemeColor` extensions.

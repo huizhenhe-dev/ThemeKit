@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 private var _cachedColors: NSCache<NSNumber, ThemeColor> = NSCache()
 private var _cachedThemeColors: NSCache<NSNumber, NSColor> = NSCache()

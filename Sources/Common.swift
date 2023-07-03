@@ -5,6 +5,7 @@
 //  Created by Nuno Grilo on 14/10/2016.
 //  Copyright © 2016 Paw & Nuno Grilo. All rights reserved.
 //
+import AppKit
 
 func CacheKey(selector: Selector) -> NSNumber {
     return CacheKey(selector: selector, colorSpace: nil, theme: nil)
