@@ -172,7 +172,7 @@ open class ThemeImage: NSImage {
             return cachedImage
         } else {
             let image = ThemeImage(with: selector)
-            //_cachedImages.setObject(image, forKey: cacheKey)
+            _cachedImages.setObject(image, forKey: cacheKey)
             return image
         }
     }
@@ -199,7 +199,7 @@ open class ThemeImage: NSImage {
 
             // Cache it
             if let themeImage = image {
-                //_cachedThemeImages.setObject(themeImage, forKey: cacheKey)
+                _cachedThemeImages.setObject(themeImage, forKey: cacheKey)
             }
         }
 
@@ -259,9 +259,7 @@ open class ThemeImage: NSImage {
         recacheImage()
 
         // recache on theme change
-        registerThemeChangeNotifications()
-        
-        print("huizhen+++ \(self) \(selector), resolve image \(resolvedThemeImage)")
+        registerThemeChangeNotifications()        
     }
 
     deinit {
@@ -285,7 +283,9 @@ open class ThemeImage: NSImage {
         // Recache resolved image
         if let selector = themeImageSelector,
             let newImage = ThemeImage.image(for: ThemeManager.shared.effectiveTheme, selector: selector) {
-            resolvedThemeImage = newImage
+            if let data = newImage.tiffRepresentation, let image = NSImage(data: data) {
+                resolvedThemeImage = image
+            }
         }
     }
 
