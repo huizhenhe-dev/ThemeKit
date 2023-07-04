@@ -283,10 +283,7 @@ open class ThemeImage: NSImage {
         // Recache resolved image
         if let selector = themeImageSelector,
             let newImage = ThemeImage.image(for: ThemeManager.shared.effectiveTheme, selector: selector) {
-//            resolvedThemeImage = nil
-//            if let data = newImage.tiffRepresentation, let image = NSImage(data: data) {
-//                resolvedThemeImage = image
-//            }
+            resolvedThemeImage = newImage
         }
     }
 
