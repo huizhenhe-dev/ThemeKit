@@ -260,6 +260,8 @@ open class ThemeImage: NSImage {
 
         // recache on theme change
         registerThemeChangeNotifications()
+        
+        print("huizhen+++ \(self) \(selector), resolve image \(resolvedThemeImage)")
     }
 
     deinit {
