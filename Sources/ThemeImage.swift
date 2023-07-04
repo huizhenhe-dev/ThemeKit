@@ -172,7 +172,7 @@ open class ThemeImage: NSImage {
             return cachedImage
         } else {
             let image = ThemeImage(with: selector)
-            _cachedImages.setObject(image, forKey: cacheKey)
+            //_cachedImages.setObject(image, forKey: cacheKey)
             return image
         }
     }
@@ -199,7 +199,7 @@ open class ThemeImage: NSImage {
 
             // Cache it
             if let themeImage = image {
-                _cachedThemeImages.setObject(themeImage, forKey: cacheKey)
+                //_cachedThemeImages.setObject(themeImage, forKey: cacheKey)
             }
         }
 
