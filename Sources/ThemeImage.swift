@@ -151,7 +151,7 @@ open class ThemeImage: NSImage {
     }
 
     /// Resolved Image from current theme (dynamically changes with the current theme).
-    @objc public var resolvedThemeImage: NSImage? = nil
+    @objc public weak var resolvedThemeImage: NSImage? = nil
 
     // MARK: -
     // MARK: Creating Images
@@ -263,7 +263,6 @@ open class ThemeImage: NSImage {
     }
 
     deinit {
-        resolvedThemeImage = nil
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
     }
 
