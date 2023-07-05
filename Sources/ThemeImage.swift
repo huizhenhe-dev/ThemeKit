@@ -263,6 +263,7 @@ open class ThemeImage: NSImage {
     }
 
     deinit {
+        resolvedThemeImage = nil
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
     }
 
