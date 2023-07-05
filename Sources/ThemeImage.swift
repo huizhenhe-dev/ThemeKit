@@ -151,7 +151,7 @@ open class ThemeImage: NSImage {
     }
 
     /// Resolved Image from current theme (dynamically changes with the current theme).
-    @objc public var resolvedThemeImage: NSImage = NSImage(size: NSSize.zero)
+    @objc public var resolvedThemeImage: NSImage? = nil
 
     // MARK: -
     // MARK: Creating Images
@@ -263,6 +263,7 @@ open class ThemeImage: NSImage {
     }
 
     deinit {
+        resolvedThemeImage = nil
         NotificationCenter.default.removeObserver(self, name: .didChangeTheme, object: nil)
     }
 
@@ -314,136 +315,136 @@ open class ThemeImage: NSImage {
 
     override open var size: NSSize {
         get {
-            return resolvedThemeImage.size
+            return resolvedThemeImage?.size ?? .zero
         }
         set {
-            resolvedThemeImage.size = newValue
+            resolvedThemeImage?.size = newValue
         }
     }
 
     override open func setName(_ string: NSImage.Name?) -> Bool {
-        return resolvedThemeImage.setName(string)
+        return resolvedThemeImage?.setName(string) ?? false
     }
 
     override open func name() -> NSImage.Name? {
-        return resolvedThemeImage.name()
+        return resolvedThemeImage?.name()
     }
 
     override open var backgroundColor: NSColor {
         get {
-            return resolvedThemeImage.backgroundColor
+            return resolvedThemeImage?.backgroundColor ?? .clear
         }
         set {
-            resolvedThemeImage.backgroundColor = newValue
+            resolvedThemeImage?.backgroundColor = newValue
         }
     }
 
     override open var usesEPSOnResolutionMismatch: Bool {
         get {
-            return resolvedThemeImage.usesEPSOnResolutionMismatch
+            return resolvedThemeImage?.usesEPSOnResolutionMismatch ?? false
         }
         set {
-            resolvedThemeImage.usesEPSOnResolutionMismatch = newValue
+            resolvedThemeImage?.usesEPSOnResolutionMismatch = newValue
         }
     }
 
     override open var prefersColorMatch: Bool {
         get {
-            return resolvedThemeImage.prefersColorMatch
+            return resolvedThemeImage?.prefersColorMatch ?? false
         }
         set {
-            resolvedThemeImage.prefersColorMatch = newValue
+            resolvedThemeImage?.prefersColorMatch = newValue
         }
     }
 
     override open var matchesOnMultipleResolution: Bool {
         get {
-            return resolvedThemeImage.matchesOnMultipleResolution
+            return resolvedThemeImage?.matchesOnMultipleResolution ?? false
         }
         set {
-            resolvedThemeImage.matchesOnMultipleResolution = newValue
+            resolvedThemeImage?.matchesOnMultipleResolution = newValue
         }
     }
 
     override open var matchesOnlyOnBestFittingAxis: Bool {
         get {
-            return resolvedThemeImage.matchesOnlyOnBestFittingAxis
+            return resolvedThemeImage?.matchesOnlyOnBestFittingAxis ?? false
         }
         set {
-            resolvedThemeImage.matchesOnlyOnBestFittingAxis = newValue
+            resolvedThemeImage?.matchesOnlyOnBestFittingAxis = newValue
         }
     }
 
     override open func draw(at point: NSPoint, from fromRect: NSRect, operation op: NSCompositingOperation, fraction delta: CGFloat) {
-        resolvedThemeImage.draw(at: point, from: fromRect, operation: op, fraction: delta)
+        resolvedThemeImage?.draw(at: point, from: fromRect, operation: op, fraction: delta)
     }
 
     override open func draw(in rect: NSRect, from fromRect: NSRect, operation op: NSCompositingOperation, fraction delta: CGFloat) {
-        resolvedThemeImage.draw(in: rect, from: fromRect, operation: op, fraction: delta)
+        resolvedThemeImage?.draw(in: rect, from: fromRect, operation: op, fraction: delta)
     }
 
     override open func draw(in dstSpacePortionRect: NSRect, from srcSpacePortionRect: NSRect, operation op: NSCompositingOperation, fraction requestedAlpha: CGFloat, respectFlipped respectContextIsFlipped: Bool, hints: [NSImageRep.HintKey: Any]?) {
-        resolvedThemeImage.draw(in: dstSpacePortionRect, from: srcSpacePortionRect, operation: op, fraction: requestedAlpha, respectFlipped: respectContextIsFlipped, hints: hints)
+        resolvedThemeImage?.draw(in: dstSpacePortionRect, from: srcSpacePortionRect, operation: op, fraction: requestedAlpha, respectFlipped: respectContextIsFlipped, hints: hints)
     }
 
     override open func drawRepresentation(_ imageRep: NSImageRep, in rect: NSRect) -> Bool {
-        return resolvedThemeImage.drawRepresentation(imageRep, in: rect)
+        return resolvedThemeImage?.drawRepresentation(imageRep, in: rect) ?? false
     }
 
     override open func draw(in rect: NSRect) {
-        resolvedThemeImage.draw(in: rect)
+        resolvedThemeImage?.draw(in: rect)
     }
 
     override open func recache() {
-        resolvedThemeImage.recache()
+        resolvedThemeImage?.recache()
     }
 
     override open var tiffRepresentation: Data? {
-        return resolvedThemeImage.tiffRepresentation
+        return resolvedThemeImage?.tiffRepresentation
     }
 
     override open func tiffRepresentation(using comp: NSBitmapImageRep.TIFFCompression, factor: Float) -> Data? {
-        return resolvedThemeImage.tiffRepresentation(using: comp, factor: factor)
+        return resolvedThemeImage?.tiffRepresentation(using: comp, factor: factor)
     }
 
     override open var representations: [NSImageRep] {
-        return resolvedThemeImage.representations
+        return resolvedThemeImage?.representations ?? []
     }
 
     override open func addRepresentations(_ imageReps: [NSImageRep]) {
-        resolvedThemeImage.addRepresentations(imageReps)
+        resolvedThemeImage?.addRepresentations(imageReps)
     }
 
     override open func addRepresentation(_ imageRep: NSImageRep) {
-        resolvedThemeImage.addRepresentation(imageRep)
+        resolvedThemeImage?.addRepresentation(imageRep)
     }
 
     override open func removeRepresentation(_ imageRep: NSImageRep) {
-        resolvedThemeImage.removeRepresentation(imageRep)
+        resolvedThemeImage?.removeRepresentation(imageRep)
     }
 
     override open var isValid: Bool {
-        return resolvedThemeImage.isValid
+        return resolvedThemeImage?.isValid ?? false
     }
 
     override open func lockFocus() {
-        resolvedThemeImage.lockFocus()
+        resolvedThemeImage?.lockFocus()
     }
 
     override open func lockFocusFlipped(_ flipped: Bool) {
-        resolvedThemeImage.lockFocusFlipped(flipped)
+        resolvedThemeImage?.lockFocusFlipped(flipped)
     }
 
     override open func unlockFocus() {
-        resolvedThemeImage.unlockFocus()
+        resolvedThemeImage?.unlockFocus()
     }
 
     override open var delegate: NSImageDelegate? {
         get {
-            return resolvedThemeImage.delegate
+            return resolvedThemeImage?.delegate
         }
         set {
-            resolvedThemeImage.delegate = newValue
+            resolvedThemeImage?.delegate = newValue
         }
     }
 
@@ -453,75 +454,75 @@ open class ThemeImage: NSImage {
 
     override open var cacheMode: NSImage.CacheMode {
         get {
-            return resolvedThemeImage.cacheMode
+            return resolvedThemeImage?.cacheMode ?? NSImage.CacheMode.default
         }
         set {
-            resolvedThemeImage.cacheMode = newValue
+            resolvedThemeImage?.cacheMode = newValue
         }
     }
 
     override open var alignmentRect: NSRect {
         get {
-            return resolvedThemeImage.alignmentRect
+            return resolvedThemeImage?.alignmentRect ?? .zero
         }
         set {
-            resolvedThemeImage.alignmentRect = newValue
+            resolvedThemeImage?.alignmentRect = newValue
         }
     }
 
     override open var isTemplate: Bool {
         get {
-            return resolvedThemeImage.isTemplate
+            return resolvedThemeImage?.isTemplate ?? false
         }
         set {
-            resolvedThemeImage.isTemplate = newValue
+            resolvedThemeImage?.isTemplate = newValue
         }
     }
 
     override open var accessibilityDescription: String? {
         get {
-            return resolvedThemeImage.accessibilityDescription
+            return resolvedThemeImage?.accessibilityDescription
         }
         set {
-            resolvedThemeImage.accessibilityDescription = newValue
+            resolvedThemeImage?.accessibilityDescription = newValue
         }
     }
 
     override open func cgImage(forProposedRect proposedDestRect: UnsafeMutablePointer<NSRect>?, context referenceContext: NSGraphicsContext?, hints: [NSImageRep.HintKey: Any]?) -> CGImage? {
-        return resolvedThemeImage.cgImage(forProposedRect: proposedDestRect, context: referenceContext, hints: hints)
+        return resolvedThemeImage?.cgImage(forProposedRect: proposedDestRect, context: referenceContext, hints: hints)
     }
 
     override open func bestRepresentation(for rect: NSRect, context referenceContext: NSGraphicsContext?, hints: [NSImageRep.HintKey: Any]?) -> NSImageRep? {
-        return resolvedThemeImage.bestRepresentation(for: rect, context: referenceContext, hints: hints)
+        return resolvedThemeImage?.bestRepresentation(for: rect, context: referenceContext, hints: hints)
     }
 
     override open func hitTest(_ testRectDestSpace: NSRect, withDestinationRect imageRectDestSpace: NSRect, context: NSGraphicsContext?, hints: [NSImageRep.HintKey: Any]?, flipped: Bool) -> Bool {
-        return resolvedThemeImage.hitTest(testRectDestSpace, withDestinationRect: imageRectDestSpace, context: context, hints: hints, flipped: flipped)
+        return resolvedThemeImage?.hitTest(testRectDestSpace, withDestinationRect: imageRectDestSpace, context: context, hints: hints, flipped: flipped) ?? false
     }
 
     override open func recommendedLayerContentsScale(_ preferredContentsScale: CGFloat) -> CGFloat {
-        return resolvedThemeImage.recommendedLayerContentsScale(preferredContentsScale)
+        return resolvedThemeImage?.recommendedLayerContentsScale(preferredContentsScale) ?? 0
     }
 
     override open func layerContents(forContentsScale layerContentsScale: CGFloat) -> Any {
-        return resolvedThemeImage.layerContents(forContentsScale: layerContentsScale)
+        return resolvedThemeImage?.layerContents(forContentsScale: layerContentsScale) ?? NSObject()
     }
 
     override open var capInsets: NSEdgeInsets {
         get {
-            return resolvedThemeImage.capInsets
+            return resolvedThemeImage?.capInsets ?? NSEdgeInsets()
         }
         set {
-            resolvedThemeImage.capInsets = newValue
+            resolvedThemeImage?.capInsets = newValue
         }
     }
 
     override open var resizingMode: NSImage.ResizingMode {
         get {
-            return resolvedThemeImage.resizingMode
+            return resolvedThemeImage?.resizingMode ?? NSImage.ResizingMode.stretch
         }
         set {
-            resolvedThemeImage.resizingMode = newValue
+            resolvedThemeImage?.resizingMode = newValue
         }
     }
 
