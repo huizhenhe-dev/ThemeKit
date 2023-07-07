@@ -78,6 +78,9 @@ public extension NSWindow {
     /// Theme all windows compliant to ThemeManager.windowThemePolicy (and if needed).
     @objc static func themeAllWindows() {
         for window in windowsCompliantWithWindowThemePolicy() {
+            if window.className == "NSStatusBarWindow" {
+                continue
+            }
             window.theme()
         }
     }
