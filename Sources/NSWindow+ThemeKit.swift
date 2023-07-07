@@ -70,7 +70,7 @@ public extension NSWindow {
 
     /// Theme window if compliant to ThemeManager.windowThemePolicy (and if needed).
     @objc func themeIfCompliantWithWindowThemePolicy() {
-        if isCompliantWithWindowThemePolicy() {
+        if isCompliantWithWindowThemePolicy(), Self.canThemeIt(window: self) {
             theme()
         }
     }
@@ -78,11 +78,18 @@ public extension NSWindow {
     /// Theme all windows compliant to ThemeManager.windowThemePolicy (and if needed).
     @objc static func themeAllWindows() {
         for window in windowsCompliantWithWindowThemePolicy() {
-            if #available(OSX 10.16, *), window.className == "NSStatusBarWindow" {
+            if !Self.canThemeIt(window: window) {
                 continue
             }
             window.theme()
         }
+    }
+    
+    @objc static func canThemeIt(window: NSWindow) -> Bool {
+        if #available(OSX 10.16, *), window.className == "NSStatusBarWindow" {
+            return false
+        }
+        return true
     }
 
     // MARK: - Private
