@@ -154,7 +154,7 @@ public extension NSWindow {
 
     /// Take window screenshot.
     @objc internal func takeScreenshot() -> NSImage? {
-        guard let cgImage = CGWindowListCreateImage(CGRect.null, .optionIncludingWindow, CGWindowID(windowNumber), .boundsIgnoreFraming) else {
+        guard windowNumber >= CGWindowID.min, windowNumber <= CGWindowID.max, let cgImage = CGWindowListCreateImage(CGRect.null, .optionIncludingWindow, CGWindowID(windowNumber), .boundsIgnoreFraming) else {
             return nil
         }
 
